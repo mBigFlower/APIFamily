@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.flowerfat.apilibrary.indentification.IdActivity;
 import com.flowerfat.apilibrary.main.Util;
 import com.flowerfat.apilibrary.phone.Phone2PlaceActivity;
 
@@ -31,25 +32,8 @@ public class MainActivity extends AppCompatActivity {
         mContext = this ;
 
         initListView();
-        test();
     }
 
-    private void test(){
-        String text = "\u5e7f\u5c9b\u4e4b\u604b.mp3";
-        long beginTime1 = System.currentTimeMillis() ;
-        Log.i("方法一", "开始");
-        for (double i=0; i<25000;i++){
-            Util.decodeUnicode(text);
-        }
-        Log.i("方法一", "共耗时："+(System.currentTimeMillis()-beginTime1));
-
-        long beginTime2 = System.currentTimeMillis() ;
-        Log.i("方法二", "开始");
-        for (double i=0; i<25000;i++){
-            Util.unicode2Utf8(text);
-        }
-        Log.i("方法二", "共耗时：" + (System.currentTimeMillis() - beginTime2));
-    }
 
     private void initListView(){
         mListView = (ListView)findViewById(R.id.main_listview);
@@ -71,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 3:
                 startActivity(new Intent(mContext, Phone2PlaceActivity.class));
+                break;
+            case 6:
+                startActivity(new Intent(mContext, IdActivity.class));
                 break;
             default:
                 Toast.makeText(MainActivity.this, "尚未添加该api，敬请期待~", Toast.LENGTH_LONG).show();
