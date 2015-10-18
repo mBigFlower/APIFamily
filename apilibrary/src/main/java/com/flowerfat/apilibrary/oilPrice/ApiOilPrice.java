@@ -14,7 +14,7 @@ public class ApiOilPrice {
 
     private final String httpUrl = "http://apis.baidu.com/showapi_open_bus/oil_price/find";
 
-    public String phone2Place(String province) {
+    public String getOilPrice(String province) {
         String httpArg = "prov=" + province;
         String jsonResult = Http.request(httpUrl, httpArg);
         System.out.println(jsonResult);
@@ -28,8 +28,16 @@ public class ApiOilPrice {
             if (jsonObject.getInt("showapi_res_code") == 0) {
                 JSONObject content = jsonObject.getJSONObject("showapi_res_body");
                 JSONArray list = new JSONArray(content.getString("list"));
+                JSONObject oilData = (JSONObject)list.get(0);
 
-                return "";
+                StringBuffer sb = new StringBuffer();
+                sb
+                        .append("0号油：").append(content.getString("p0"))
+                        .append("元/升\n90号油：").append(content.getString("p90"))
+                        .append("元/升\n93号油：").append(content.getString("p93"))
+                        .append("元/升\n97号油：").append(content.getString("p97"))
+                        .append("元/升");
+                return sb.toString();
             } else {
                 return jsonObject.getString("showapi_res_error");
             }

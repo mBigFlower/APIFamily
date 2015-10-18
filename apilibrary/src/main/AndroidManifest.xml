@@ -21,6 +21,10 @@
             android:name=".indentification.IdActivity"
             android:label="@string/title_activity_id" >
         </activity>
+        <activity
+            android:name=".oilPrice.OilActivity"
+            android:label="@string/title_activity_oil" >
+        </activity>
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.flowerfat.apilibrary.indentification.IdActivity;
 import com.flowerfat.apilibrary.main.Util;
+import com.flowerfat.apilibrary.oilPrice.OilActivity;
 import com.flowerfat.apilibrary.phone.Phone2PlaceActivity;
 
 
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 3:
                 startActivity(new Intent(mContext, Phone2PlaceActivity.class));
+                break;
+            case 5:
+                startActivity(new Intent(mContext, OilActivity.class));
                 break;
             case 6:
                 startActivity(new Intent(mContext, IdActivity.class));
