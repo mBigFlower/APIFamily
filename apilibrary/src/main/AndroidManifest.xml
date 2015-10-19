@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flowerfat.apilibrary" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".main.MyApplication"
@@ -17,6 +16,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".indentification.IdActivity"
+            android:label="@string/title_activity_id" >
+        </activity>
+        <activity
+            android:name=".oilPrice.OilActivity"
+            android:label="@string/title_activity_oil" >
         </activity>
     </application>
 
