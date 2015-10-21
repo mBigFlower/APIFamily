@@ -25,6 +25,18 @@
             android:name=".oilPrice.OilActivity"
             android:label="@string/title_activity_oil" >
         </activity>
+        <activity
+            android:name=".healthCook.CookActivity"
+            android:label="@string/title_activity_food" >
+        </activity>
+        <activity
+            android:name=".healthCook.DetailsActivity"
+            android:label="@string/title_activity_details" >
+        </activity>
+        <activity
+            android:name=".healthCook.NameActivity"
+            android:label="@string/title_activity_name" >
+        </activity>
     </application>
 
 </manifest>

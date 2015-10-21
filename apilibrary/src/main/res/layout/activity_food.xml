@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.flowerfat.apilibrary.healthCook.CookActivity">
+
+    <Button
+        android:id="@+id/cook_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="cookOnclick"
+        android:text="菜谱名称" />
+
+    <Button
+        android:id="@+id/cook_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="cookOnclick"
+        android:text="菜谱详情" />
+
+    <Button
+        android:id="@+id/cook_categery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="cookOnclick"
+        android:text="菜谱分类" />
+
+    <Button
+        android:id="@+id/cook_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="cookOnclick"
+        android:text="菜谱列表" />
+
+</LinearLayout>

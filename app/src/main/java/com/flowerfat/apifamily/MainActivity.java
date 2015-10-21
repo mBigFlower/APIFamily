@@ -4,15 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.flowerfat.apilibrary.healthCook.CookActivity;
 import com.flowerfat.apilibrary.indentification.IdActivity;
-import com.flowerfat.apilibrary.main.Util;
 import com.flowerfat.apilibrary.oilPrice.OilActivity;
 import com.flowerfat.apilibrary.phone.Phone2PlaceActivity;
 
@@ -51,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void listViewOnclick(int position){
         switch (position){
+            case 0:
+                startActivity(new Intent(mContext, CookActivity.class));
+                break;
             case 2:
                 Toast.makeText(mContext, "马上搞定它！", Toast.LENGTH_LONG).show();
                 break;
