@@ -22,7 +22,7 @@ public class CookActivity extends AppCompatActivity {
         if(v.getId() == R.id.cook_name){
             startActivity(new Intent(CookActivity.this, NameActivity.class));
         } else if(v.getId() == R.id.cook_details){
-
+            startActivity(new Intent(CookActivity.this, DetailsActivity.class));
         } else if(v.getId() == R.id.cook_categery){
 
         } else if(v.getId() == R.id.cook_list){

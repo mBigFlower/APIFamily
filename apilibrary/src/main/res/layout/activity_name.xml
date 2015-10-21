@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/id_edit"
+            android:id="@+id/cookName_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -29,5 +29,9 @@
     </LinearLayout>
 
     <!--这里来一个RecyclerView，显示列表的-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cookName_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

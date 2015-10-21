@@ -1,18 +1,15 @@
 package com.flowerfat.apilibrary.oilPrice;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.flowerfat.apilibrary.R;
-import com.flowerfat.apilibrary.indentification.ApiIndentify;
 
 public class OilActivity extends AppCompatActivity {
 
@@ -33,8 +30,8 @@ public class OilActivity extends AppCompatActivity {
 
 
     private void findView(){
-        mEditText = (EditText)findViewById(R.id.id_edit);
-        mTextView = (TextView)findViewById(R.id.id_resultText);
+        mEditText = (EditText)findViewById(R.id.oil_edit);
+        mTextView = (TextView)findViewById(R.id.oil_resultText);
     }
 
     public void SearchOnclick(View v){

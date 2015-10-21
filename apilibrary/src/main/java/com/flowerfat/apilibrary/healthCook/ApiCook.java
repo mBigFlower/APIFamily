@@ -1,5 +1,7 @@
 package com.flowerfat.apilibrary.healthCook;
 
+import android.util.Log;
+
 import com.flowerfat.apilibrary.main.Http;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -61,6 +63,7 @@ public class ApiCook {
     public Cook getById(int id) {
         String httpArg = "id=" + id;
         String jsonResult = Http.request(byIdUrl, httpArg);
+        Log.i("getById", jsonResult);
         return mGson.fromJson(jsonResult, Cook.class);
     }
 
@@ -98,15 +101,14 @@ public class ApiCook {
         }
     }
 
-
     /**
      * 通过服务器返回，获得图片链接
      *
      * @param imgUrl 服务器返回的图片地址（拼接用）
      * @return 最终图片地址
      */
-    public String getImgUrl(String imgUrl) {
-        return "http://tnfs.tngou.net/img" + imgUrl;
+    public static String getImgUrl(String imgUrl) {
+        return "http://tnfs.tngou.net/image" + imgUrl;
     }
 
     /**
@@ -120,7 +122,7 @@ public class ApiCook {
      * @param height 图片高度，貌似不能超过 600
      * @return 最终图片地址
      */
-    public String getImgUrlWH(String imgUrl, int width, int height) {
+    public static String getImgUrl(String imgUrl, int width, int height) {
         if (width > 800) {
 
         } else if (height > 600) {
