@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ApiCook {
 
-    private final String categoryUrl = "http://apis.baidu.com/apistore/mobilephoneservice/mobilephone";
+    private final String categoryUrl = "http://apis.baidu.com/tngou/cook/classify";
     private final String byNameUrl = "http://apis.baidu.com/tngou/cook/name";
     private final String byIdUrl = "http://apis.baidu.com/tngou/cook/show";
     private final String listUrl = "http://apis.baidu.com/tngou/cook/list";
@@ -36,7 +36,7 @@ public class ApiCook {
      */
     public String getList(int id, int page, int rows) {
         String httpArg = "id=" + id + "&page=" + page + "&rows=" + rows;
-        String jsonResult = Http.request(byNameUrl, httpArg);
+        String jsonResult = Http.request(listUrl, httpArg);
         System.out.println(jsonResult);
         return jsonResult;
     }

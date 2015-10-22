@@ -8,4 +8,6 @@
     <string name="title_activity_food">FoodActivity</string>
     <string name="title_activity_details">DetailsActivity</string>
     <string name="title_activity_name">NameActivity</string>
+    <string name="title_activity_category">CategoryActivity</string>
+    <string name="title_activity_list">ListActivity</string>
 </resources>

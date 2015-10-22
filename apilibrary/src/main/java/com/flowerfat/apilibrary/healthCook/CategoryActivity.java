@@ -3,38 +3,22 @@ package com.flowerfat.apilibrary.healthCook;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.flowerfat.apilibrary.R;
 
-public class DetailsActivity extends AppCompatActivity {
-
-    // 菜的id
-    private int id ;
+public class CategoryActivity extends AppCompatActivity {
+    private final static String TAG = "CategoryActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_category);
 
-        getData();
-
+        new MyTask().execute();
     }
-
-    private void getData() {
-
-        id = getIntent().getIntExtra("id", -1);
-        if(-1 == id){
-            Toast.makeText(DetailsActivity.this, "出现异常。未提供菜谱的id ！", Toast.LENGTH_SHORT).show();
-        } else {
-            new MyTask().execute();
-        }
-    }
-
 
     private class MyTask extends AsyncTask<String, Integer, String> {
         //onPreExecute方法用于在执行后台任务前做一些UI操作
@@ -46,7 +30,7 @@ public class DetailsActivity extends AppCompatActivity {
         //doInBackground方法内部执行后台任务,不可在此方法内修改UI
         @Override
         protected String doInBackground(String... params) {
-            return new ApiCook().getById(id).getMessage();
+            return new ApiCook().getCategory(0);
         }
 
         //onProgressUpdate方法用于更新进度信息
@@ -58,9 +42,9 @@ public class DetailsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             Log.i("result", result);
-            TextView textView = (TextView)findViewById(R.id.details_text);
+            TextView textView = (TextView)findViewById(R.id.category_text);
             textView.setMovementMethod(ScrollingMovementMethod.getInstance());
-            textView.setText(Html.fromHtml(result));
+            textView.setText(result);
         }
 
         //onCancelled方法用于在取消执行中的任务时更改UI
@@ -68,4 +52,5 @@ public class DetailsActivity extends AppCompatActivity {
         protected void onCancelled(){
         }
     }
+
 }

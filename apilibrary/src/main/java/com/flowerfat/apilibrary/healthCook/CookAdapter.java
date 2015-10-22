@@ -20,6 +20,7 @@ import java.util.List;
 public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
 
     private List<Cook> mDatas = new ArrayList<>();
+    private onItemClickListener mInterface;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -27,7 +28,7 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView titleTV, descriptionTV;
-        public SimpleDraweeView cookImg ;
+        public SimpleDraweeView cookImg;
 
         public ViewHolder(View v) {
             super(v);
@@ -54,12 +55,21 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(CookAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(CookAdapter.ViewHolder holder, final int position) {
         holder.titleTV.setText(mDatas.get(position).getName());
         holder.descriptionTV.setText(mDatas.get(position).getDescription());
         Log.i("imgUrl", ApiCook.getImgUrl(mDatas.get(position).getImg()));
         Uri uri = Uri.parse(ApiCook.getImgUrl(mDatas.get(position).getImg()));
         holder.cookImg.setImageURI(uri);
+
+        holder.cookImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mInterface != null){
+                    mInterface.onClick(v, position);
+                }
+            }
+        });
     }
 
     @Override
@@ -86,5 +96,18 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
      */
     public void addData(Cook data) {
         mDatas.add(data);
+    }
+
+
+    /**
+     * 因为RecyclerView没有提供ItemOnclick的接口
+     * 所以这里自己写一个
+     */
+    public interface onItemClickListener {
+        void onClick(View v, int position);
+    }
+
+    public void setOnItemClickListener(onItemClickListener listener) {
+        this.mInterface = listener;
     }
 }

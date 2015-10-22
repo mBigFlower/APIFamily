@@ -1,5 +1,6 @@
 package com.flowerfat.apilibrary.healthCook;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.flowerfat.apilibrary.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NameActivity extends AppCompatActivity {
@@ -24,6 +26,7 @@ public class NameActivity extends AppCompatActivity {
     private EditText mEditText;
 
     private String cookName;
+    private List<Cook> cookList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class NameActivity extends AppCompatActivity {
     private void findView() {
         mEditText = (EditText) findViewById(R.id.cookName_edit);
         mRecyclerView = (RecyclerView) findViewById(R.id.cookName_recyclerView);
+
     }
 
     private void initRecyclerView() {
@@ -50,6 +54,16 @@ public class NameActivity extends AppCompatActivity {
         myAdapter = new CookAdapter();
         // 为mRecyclerView设置适配器
         mRecyclerView.setAdapter(myAdapter);
+
+
+        myAdapter.setOnItemClickListener(new CookAdapter.onItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent = new Intent(NameActivity.this, DetailsActivity.class);
+                intent.putExtra("id", cookList.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void setRecyclerView(List<Cook> cooks) {
@@ -64,6 +78,8 @@ public class NameActivity extends AppCompatActivity {
             Toast.makeText(NameActivity.this, "请输入美食名称", Toast.LENGTH_LONG).show();
         }
     }
+
+
 
     private class MyTask extends AsyncTask<String, Integer, String> {
         //onPreExecute方法用于在执行后台任务前做一些UI操作
@@ -87,10 +103,10 @@ public class NameActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             try {
-                List<Cook> cooks = new Gson().fromJson(result, new TypeToken<List<Cook>>() {
+                cookList = new Gson().fromJson(result, new TypeToken<List<Cook>>() {
                 }.getType());
-                if (cooks.size() > 0) {
-                    setRecyclerView(cooks);
+                if (cookList.size() > 0) {
+                    setRecyclerView(cookList);
                 } else {
                     Toast.makeText(NameActivity.this, "未搜索到相关菜谱", Toast.LENGTH_LONG).show();
                 }
@@ -103,4 +119,6 @@ public class NameActivity extends AppCompatActivity {
         protected void onCancelled() {
         }
     }
+
+
 }

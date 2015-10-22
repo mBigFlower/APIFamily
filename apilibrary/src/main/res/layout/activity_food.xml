@@ -14,13 +14,6 @@
         android:text="菜谱名称" />
 
     <Button
-        android:id="@+id/cook_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="cookOnclick"
-        android:text="菜谱详情" />
-
-    <Button
         android:id="@+id/cook_categery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
