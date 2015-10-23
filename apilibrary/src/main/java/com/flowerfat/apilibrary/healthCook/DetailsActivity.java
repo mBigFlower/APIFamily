@@ -1,15 +1,19 @@
 package com.flowerfat.apilibrary.healthCook;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.flowerfat.apilibrary.R;
+import com.flowerfat.apilibrary.view.HtmlTextView;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -46,7 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
         //doInBackground方法内部执行后台任务,不可在此方法内修改UI
         @Override
         protected String doInBackground(String... params) {
-            return new ApiCook().getById(id).getMessage();
+            return new ApiCook().getById(id);
         }
 
         //onProgressUpdate方法用于更新进度信息
@@ -58,9 +62,24 @@ public class DetailsActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             Log.i("result", result);
-            TextView textView = (TextView)findViewById(R.id.details_text);
-            textView.setMovementMethod(ScrollingMovementMethod.getInstance());
-            textView.setText(Html.fromHtml(result));
+            try{
+                JSONObject jsonObject = new JSONObject(result);
+                if(jsonObject.getBoolean("success")){
+                    CookDetail cookDetail = new Gson().fromJson(jsonObject.getString("yi18"), CookDetail.class);
+
+                    HtmlTextView textView = (HtmlTextView)findViewById(R.id.details_text);
+                    textView.setMovementMethod(ScrollingMovementMethod.getInstance());
+                    textView.setText(cookDetail.getMessage());
+
+                    Uri uri = Uri.parse(ApiCook.getImgUrl(cookDetail.getImg()));
+                    SimpleDraweeView mImageView = (SimpleDraweeView) findViewById(R.id.details_img);
+                    mImageView.setImageURI(uri);
+                } else {
+                    Toast.makeText(DetailsActivity.this, "未搜索到相关菜谱", Toast.LENGTH_LONG).show();
+                }
+            } catch (Exception e){
+                Log.e("菜谱详细：", "出错啦："+e.getMessage());
+            }
         }
 
         //onCancelled方法用于在取消执行中的任务时更改UI
@@ -68,4 +87,5 @@ public class DetailsActivity extends AppCompatActivity {
         protected void onCancelled(){
         }
     }
+
 }

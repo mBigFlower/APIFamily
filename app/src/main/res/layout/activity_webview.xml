@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/webview_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/webview_coachInfo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="教练详情"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/webview_goback"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:padding="14dp"
+            android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/webview_bindBt"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="绑定教练"
+        android:textColor="#fff"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <WebView
+        android:id="@+id/video_webview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/webview_bindBt"
+        android:layout_below="@id/webview_title" />
+
+    <ProgressBar
+        android:id="@+id/webview_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/video_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" >
+    </FrameLayout>
+
+</RelativeLayout>

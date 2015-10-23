@@ -1,7 +1,5 @@
 package com.flowerfat.apilibrary.healthCook;
 
-import android.util.Log;
-
 import com.flowerfat.apilibrary.main.Http;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -16,10 +14,10 @@ import java.util.List;
  */
 public class ApiCook {
 
-    private final String categoryUrl = "http://apis.baidu.com/tngou/cook/classify";
-    private final String byNameUrl = "http://apis.baidu.com/tngou/cook/name";
-    private final String byIdUrl = "http://apis.baidu.com/tngou/cook/show";
-    private final String listUrl = "http://apis.baidu.com/tngou/cook/list";
+    private final String byNameUrl = "http://a.apix.cn/yi18/cook/search";
+    private final String categoryUrl = "http://a.apix.cn/yi18/cook/cookclass";
+    private final String byIdUrl = "http://a.apix.cn/yi18/cook/show";
+    private final String listUrl = "http://a.apix.cn/yi18/cook/list";
 
     private final Gson mGson = new Gson();
 
@@ -27,16 +25,25 @@ public class ApiCook {
     }
 
     /**
+     * 默认的获得列表
+     * @param id
+     * @return
+     */
+    public String getList(int id){
+        return getList(id, 1, 20);
+    }
+    /**
      * 获得菜谱列表，三个参数均 非必须
+     * type 为排序方式，id或count 一个是按最新，一个是按访问数
      *
      * @param id   分类ID 默认0
      * @param page 页数 默认1
-     * @param rows 条数 默认20
+     * @param limit 每页条数 默认20
      * @return
      */
-    public String getList(int id, int page, int rows) {
-        String httpArg = "id=" + id + "&page=" + page + "&rows=" + rows;
-        String jsonResult = Http.request(listUrl, httpArg);
+    public String getList(int id, int page, int limit) {
+        String httpArg = "id=" + id + "&page=" + page + "&limit=" + limit+"&type="+"count";
+        String jsonResult = Http.getCookX(listUrl, httpArg);
         System.out.println(jsonResult);
         return jsonResult;
     }
@@ -49,8 +56,9 @@ public class ApiCook {
      * @return
      */
     public String getByName(String name) {
-        String httpArg = "name=" + URLEncoder.encode(name);
-        String jsonResult = Http.request(byNameUrl, httpArg);
+        String httpArg = "keyword=" + URLEncoder.encode(name);
+        String jsonResult = Http.getCookX(byNameUrl, httpArg);
+        System.out.println(jsonResult);
         return jsonResult;
     }
 
@@ -60,11 +68,10 @@ public class ApiCook {
      * @param id
      * @return
      */
-    public Cook getById(int id) {
+    public String getById(int id) {
         String httpArg = "id=" + id;
-        String jsonResult = Http.request(byIdUrl, httpArg);
-        Log.i("getById", jsonResult);
-        return mGson.fromJson(jsonResult, Cook.class);
+        String jsonResult = Http.getCookX(byIdUrl, httpArg);
+        return jsonResult;
     }
 
     /**
@@ -75,7 +82,7 @@ public class ApiCook {
      */
     public String getCategory(int page) {
         String httpArg = "id=" + page;
-        String jsonResult = Http.request(categoryUrl, httpArg);
+        String jsonResult = Http.getCookX(categoryUrl, httpArg);
         System.out.println(jsonResult);
         return jsonResult;
     }
@@ -91,11 +98,11 @@ public class ApiCook {
      * @param name
      * @return
      */
-    public List<Cook> getListByName(String name) {
+    public List<CookDetail> getListByName(String name) {
         String httpArg = "name=" + URLEncoder.encode(name);
         String jsonResult = Http.request(byNameUrl, httpArg);
         try {
-            return mGson.fromJson(jsonResult, new TypeToken<List<Cook>>(){}.getType());
+            return mGson.fromJson(jsonResult, new TypeToken<List<CookDetail>>(){}.getType());
         } catch (Exception e) {
             return null;
         }
@@ -108,26 +115,7 @@ public class ApiCook {
      * @return 最终图片地址
      */
     public static String getImgUrl(String imgUrl) {
-        return "http://tnfs.tngou.net/image" + imgUrl;
+        return "http://www.yi18.net/" + imgUrl;
     }
 
-    /**
-     * 获得图片链接
-     * 可自定义图片大小，这个有点猛哦。
-     * <p/>
-     * 带测试
-     *
-     * @param imgUrl 服务器返回的图片地址（拼接用）
-     * @param width  图片宽度，貌似不能超过 800
-     * @param height 图片高度，貌似不能超过 600
-     * @return 最终图片地址
-     */
-    public static String getImgUrl(String imgUrl, int width, int height) {
-        if (width > 800) {
-
-        } else if (height > 600) {
-
-        }
-        return "http://tnfs.tngou.net/image" + imgUrl + "_" + width + "x" + height;
-    }
 }

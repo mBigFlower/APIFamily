@@ -13,9 +13,8 @@
 
 ## 手机号归属地 Phone2PlaceActivity##
 <span id = "phone2Place"></span>
-我用了个免费的api。所以查询结果有的不对。。。 免费的就这样吧。我会继续找更好的
+使用apix的api:[http://apix.cn/](http://apix.cn/)　　需要注册，并获取appkey
 
-eg: 1383653**** 本是一个鸡西的号码，查出来却是牡丹江~
 
 ## 油价查询 OilActivity ##
 <span id = "oil"></span>
@@ -27,9 +26,7 @@ eg: 1383653**** 本是一个鸡西的号码，查出来却是牡丹江~
 
 ## 健康菜谱 CookActivity##
 <span id = "cook"></span>
+使用apix的api:[http://apix.cn/](http://apix.cn/)　　需要注册，并获取appkey
 这里我们用到了图片加载库Fresco，**在apilibrary里的MyApplication中有个初始化！**
 
-聚合里面的天狗菜谱，加载图片各种挂，是文章作者没上传图片么，这样有点坑，不得已只能是图片挂了的item，就不显示了
-
-这个正在进行中，接口有点混乱。而且分类有点乱。。。还是不用了吧 ，好累
-聚合官方的，使用sdk，每天有10000条免费，以后可以考虑
+还在继续

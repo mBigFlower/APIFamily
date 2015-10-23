@@ -16,6 +16,8 @@ import com.flowerfat.apilibrary.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class NameActivity extends AppCompatActivity {
     private EditText mEditText;
 
     private String cookName;
-    private List<Cook> cookList = new ArrayList<>();
+    private List<CookName> cookList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class NameActivity extends AppCompatActivity {
         });
     }
 
-    private void setRecyclerView(List<Cook> cooks) {
+    private void setRecyclerView(List<CookName> cooks) {
         myAdapter.makeDatas(cooks);
     }
 
@@ -103,15 +105,21 @@ public class NameActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             try {
-                cookList = new Gson().fromJson(result, new TypeToken<List<Cook>>() {
-                }.getType());
-                if (cookList.size() > 0) {
-                    setRecyclerView(cookList);
+                JSONObject jsonObject = new JSONObject(result);
+                if(jsonObject.getBoolean("success")){
+                    cookList = new Gson().fromJson(jsonObject.getString("yi18"), new TypeToken<List<CookName>>() {
+                    }.getType());
+                    if (cookList.size() > 0) {
+                        setRecyclerView(cookList);
+                    } else {
+                        Toast.makeText(NameActivity.this, "未搜索到相关菜谱", Toast.LENGTH_LONG).show();
+                    }
                 } else {
-                    Toast.makeText(NameActivity.this, "未搜索到相关菜谱", Toast.LENGTH_LONG).show();
+                    Toast.makeText(NameActivity.this, "什么鬼？请联系bigflower", Toast.LENGTH_LONG).show();
                 }
+
             } catch (Exception e) {
-                Log.e("京酱肉丝","果然不行");
+                Log.e("菜谱名称获取","果然不行:"+e.getMessage());
             }
         }
         //onCancelled方法用于在取消执行中的任务时更改UI

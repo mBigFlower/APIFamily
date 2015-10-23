@@ -32,7 +32,7 @@ public class ListActivity extends AppCompatActivity {
         //doInBackground方法内部执行后台任务,不可在此方法内修改UI
         @Override
         protected String doInBackground(String... params) {
-            return new ApiCook().getList(147, 1, 20);
+            return new ApiCook().getList(119, 1, 20);
         }
 
         //onProgressUpdate方法用于更新进度信息

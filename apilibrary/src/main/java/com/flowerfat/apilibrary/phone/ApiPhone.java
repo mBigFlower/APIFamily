@@ -9,11 +9,11 @@ import org.json.JSONObject;
  */
 public class ApiPhone {
 
-    private final String httpUrl = "http://apis.baidu.com/apistore/mobilephoneservice/mobilephone";
+    private final String httpUrl = "http://a.apix.cn/apixlife/phone/phone";
 
     public String phone2Place(String tel) {
-        String httpArg = "tel=" + tel;
-        String jsonResult = Http.request(httpUrl, httpArg);
+        String httpArg = "phone=" + tel;
+        String jsonResult = Http.getPhoneX(httpUrl, httpArg);
         System.out.println(jsonResult);
         return dataBeautiful(jsonResult);
     }
@@ -21,11 +21,11 @@ public class ApiPhone {
     public String dataBeautiful(String text) {
         try {
             JSONObject jsonObject = new JSONObject(text);
-            if (jsonObject.getInt("errNum") == 0) {
-                JSONObject content = jsonObject.getJSONObject("retData");
-                return content.getString("province") + "-" + content.getString("city");
+            if (jsonObject.getInt("error_code") == 0) {
+                JSONObject content = jsonObject.getJSONObject("data");
+                return content.getString("province") + "-" + content.getString("city") + "\n" + content.getString("operator");
             } else {
-                return jsonObject.getString("retMsg");
+                return jsonObject.getString("message");
             }
         } catch (Exception e) {
             return e.getMessage();

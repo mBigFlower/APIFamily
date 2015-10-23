@@ -6,10 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.flowerfat.apilibrary.R;
+import com.flowerfat.apilibrary.view.HtmlTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
 
-    private List<Cook> mDatas = new ArrayList<>();
+    private List<CookName> mDatas = new ArrayList<>();
     private onItemClickListener mInterface;
 
     // Provide a reference to the views for each data item
@@ -27,13 +27,14 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView titleTV, descriptionTV;
+        public HtmlTextView titleTV;
+        public HtmlTextView descriptionTV;
         public SimpleDraweeView cookImg;
 
         public ViewHolder(View v) {
             super(v);
-            titleTV = (TextView) v.findViewById(R.id.itemCook_title);
-            descriptionTV = (TextView) v.findViewById(R.id.itemCook_description);
+            titleTV = (HtmlTextView) v.findViewById(R.id.itemCook_title);
+            descriptionTV = (HtmlTextView) v.findViewById(R.id.itemCook_description);
             cookImg = (SimpleDraweeView) v.findViewById(R.id.itemCook_img);
         }
     }
@@ -42,7 +43,7 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CookAdapter(List<Cook> myDataset) {
+    public CookAdapter(List<CookName> myDataset) {
         mDatas = myDataset;
     }
 
@@ -57,7 +58,7 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(CookAdapter.ViewHolder holder, final int position) {
         holder.titleTV.setText(mDatas.get(position).getName());
-        holder.descriptionTV.setText(mDatas.get(position).getDescription());
+        holder.descriptionTV.setText(mDatas.get(position).getContent());
         Log.i("imgUrl", ApiCook.getImgUrl(mDatas.get(position).getImg()));
         Uri uri = Uri.parse(ApiCook.getImgUrl(mDatas.get(position).getImg()));
         holder.cookImg.setImageURI(uri);
@@ -83,7 +84,7 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
      *
      * @param mDatas
      */
-    public void makeDatas(List<Cook> mDatas) {
+    public void makeDatas(List<CookName> mDatas) {
         this.mDatas = mDatas;
         notifyDataSetChanged();
     }
@@ -94,7 +95,7 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
      *
      * @param data
      */
-    public void addData(Cook data) {
+    public void addData(CookName data) {
         mDatas.add(data);
     }
 

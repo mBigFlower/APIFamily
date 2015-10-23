@@ -40,6 +40,10 @@
             android:name=".healthCook.ListActivity"
             android:label="@string/title_activity_list" >
         </activity>
+        <activity
+            android:name=".peccancy.PeccancyActivity"
+            android:label="@string/title_activity_peccancy" >
+        </activity>
     </application>
 
 </manifest>

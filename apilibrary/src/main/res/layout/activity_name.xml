@@ -2,11 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="8dp"
     android:orientation="vertical"
+    android:background="#f0f0f0"
     tools:context="com.flowerfat.apilibrary.healthCook.NameActivity">
 
     <LinearLayout
@@ -14,15 +12,16 @@
         android:layout_height="wrap_content"
         android:padding="7dp"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/cookName_edit"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content" />
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="SearchOnclick"
             android:text="查询" />

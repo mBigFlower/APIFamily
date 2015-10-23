@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/itemCook_cardview"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    app:cardCornerRadius="5dp">
 
-    <FrameLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:padding="3dp">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/itemCook_img"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="3">
 
-        <TextView
-            android:id="@+id/itemCook_title"
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/itemCook_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:roundedCornerRadius="5dp"
+                app:roundBottomLeft="false"
+                app:roundBottomRight="false" />
+
+            <com.flowerfat.apilibrary.view.HtmlTextView
+                android:id="@+id/itemCook_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="#9fff"
+                android:padding="3dp"
+                android:text="title"
+                android:singleLine="true"
+                android:textSize="22sp" />
+
+        </FrameLayout>
+
+        <com.flowerfat.apilibrary.view.HtmlTextView
+            android:id="@+id/itemCook_description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:textSize="22sp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:padding="8dp"
-            android:background="#4fff"
-            android:text="title"/>
+            android:text="description" />
 
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/itemCook_description"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp"
-        android:text="description"/>
-
-</LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

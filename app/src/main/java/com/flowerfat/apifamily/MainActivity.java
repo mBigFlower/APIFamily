@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.flowerfat.apilibrary.healthCook.CookActivity;
 import com.flowerfat.apilibrary.indentification.IdActivity;
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, CookActivity.class));
                 break;
             case 2:
-                Toast.makeText(mContext, "马上搞定它！", Toast.LENGTH_LONG).show();
+                ;
                 break;
             case 3:
                 startActivity(new Intent(mContext, Phone2PlaceActivity.class));
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, IdActivity.class));
                 break;
             default:
-                Toast.makeText(MainActivity.this, "尚未添加该api，敬请期待~", Toast.LENGTH_LONG).show();
+//                startActivity(new Intent(mContext, TestWebView.class));
                 break;
         }
     }
