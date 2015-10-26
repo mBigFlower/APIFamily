@@ -1,7 +1,6 @@
 package com.flowerfat.apilibrary.indentification;
 
 import com.flowerfat.apilibrary.main.Http;
-import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -36,7 +35,7 @@ public class ApiIndentify {
                  .append("\n地址：").append(content.getString("address"));
                 return sb.toString();
             } else {
-                return jsonObject.getString("retMsg");
+                return jsonObject.getString("errMsg");
             }
         } catch (Exception e) {
             return e.getMessage();

@@ -5,7 +5,7 @@ package com.flowerfat.apilibrary.healthCook;
  */
 public class CookDetail {
 
-    private String id;
+    private int id;
     private String name;
     private String img;
     private String tag;
@@ -15,11 +15,11 @@ public class CookDetail {
     private String fcount;
     private String rcount;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

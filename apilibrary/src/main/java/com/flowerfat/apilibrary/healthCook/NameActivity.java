@@ -24,7 +24,7 @@ import java.util.List;
 public class NameActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private CookAdapter myAdapter;
+    private CookNameAdapter myAdapter;
     private EditText mEditText;
 
     private String cookName;
@@ -53,12 +53,12 @@ public class NameActivity extends AppCompatActivity {
         // 设置固定大小
         mRecyclerView.setHasFixedSize(true);
         // 初始化自定义的适配器
-        myAdapter = new CookAdapter();
+        myAdapter = new CookNameAdapter();
         // 为mRecyclerView设置适配器
         mRecyclerView.setAdapter(myAdapter);
 
 
-        myAdapter.setOnItemClickListener(new CookAdapter.onItemClickListener() {
+        myAdapter.setOnItemClickListener(new CookNameAdapter.onItemClickListener() {
             @Override
             public void onClick(View v, int position) {
                 Intent intent = new Intent(NameActivity.this, DetailsActivity.class);

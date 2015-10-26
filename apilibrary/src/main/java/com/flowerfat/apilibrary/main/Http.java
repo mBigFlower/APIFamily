@@ -18,7 +18,7 @@ public class Http {
     }
 
     public static String request(String httpUrl, String httpArg) {
-        return Util.decodeUnicode(request(httpUrl, httpArg, "appkey", ApiContants.apikeys));
+        return Util.decodeUnicode(request(httpUrl, httpArg, "apikey", ApiContants.apikeys));
     }
 
     public static String request(String httpUrl, String httpArg, String appkey1, String appkey2) {

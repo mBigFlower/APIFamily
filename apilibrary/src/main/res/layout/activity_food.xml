@@ -20,11 +20,4 @@
         android:onClick="cookOnclick"
         android:text="菜谱分类" />
 
-    <Button
-        android:id="@+id/cook_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="cookOnclick"
-        android:text="菜谱列表" />
-
 </LinearLayout>

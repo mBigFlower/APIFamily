@@ -23,8 +23,6 @@ public class CookActivity extends AppCompatActivity {
             startActivity(new Intent(CookActivity.this, NameActivity.class));
         }  else if(v.getId() == R.id.cook_categery){
             startActivity(new Intent(CookActivity.this, CategoryActivity.class));
-        } else if(v.getId() == R.id.cook_list){
-            startActivity(new Intent(CookActivity.this, ListActivity.class));
         }
     }
 

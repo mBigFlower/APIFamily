@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView ;
     private ArrayAdapter<String> mAdapter ;
 
-    private String[] apiTitles = {"健康菜谱", "健康知识", "彩票", "手机号归属地", "天气预报", "油价", "身份证", "药品知识"};
+    private String[] apiTitles = {"健康菜谱", "健康知识(尚未添加)", "彩票(尚未添加)", "手机号归属地", "天气预报(尚未添加)", "油价", "身份证", "药品知识(尚未添加)"};
 
     private Context mContext ;
 
@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
 
 
 }

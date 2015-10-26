@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by 明明大美女 on 2015/10/21.
  */
-public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
+public class CookNameAdapter extends RecyclerView.Adapter<CookNameAdapter.ViewHolder> {
 
     private List<CookName> mDatas = new ArrayList<>();
     private onItemClickListener mInterface;
@@ -39,16 +39,16 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
         }
     }
 
-    public CookAdapter() {
+    public CookNameAdapter() {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CookAdapter(List<CookName> myDataset) {
+    public CookNameAdapter(List<CookName> myDataset) {
         mDatas = myDataset;
     }
 
     @Override
-    public CookAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CookNameAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View rowView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cookname, parent, false);
 
         ViewHolder vh = new ViewHolder(rowView);
@@ -56,7 +56,7 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(CookAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(CookNameAdapter.ViewHolder holder, final int position) {
         holder.titleTV.setText(mDatas.get(position).getName());
         holder.descriptionTV.setText(mDatas.get(position).getContent());
         Log.i("imgUrl", ApiCook.getImgUrl(mDatas.get(position).getImg()));
