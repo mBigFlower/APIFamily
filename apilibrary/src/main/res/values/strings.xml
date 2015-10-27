@@ -11,4 +11,5 @@
     <string name="title_activity_category">CategoryActivity</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="title_activity_peccancy">PeccancyActivity</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

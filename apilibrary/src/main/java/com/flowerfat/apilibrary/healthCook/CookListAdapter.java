@@ -17,6 +17,8 @@ import java.util.List;
 
 /**
  * Created by 明明大美女 on 2015/10/21.
+ *
+ * 菜谱列表的 adapter
  */
 public class CookListAdapter extends RecyclerView.Adapter<CookListAdapter.ViewHolder> {
 

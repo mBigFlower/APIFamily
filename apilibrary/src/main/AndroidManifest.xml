@@ -7,7 +7,8 @@
     <application
         android:name=".main.MyApplication"
         android:allowBackup="true"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        android:theme="@style/Theme.ApiLibrary" >
         <activity
             android:name=".phone.Phone2PlaceActivity"
             android:label="@string/app_name" >
@@ -43,6 +44,10 @@
         <activity
             android:name=".peccancy.PeccancyActivity"
             android:label="@string/title_activity_peccancy" >
+        </activity>
+        <activity
+            android:name=".identityCard.MainActivity"
+            android:label="@string/title_activity_main" >
         </activity>
     </application>
 

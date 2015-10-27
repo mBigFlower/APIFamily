@@ -7,8 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.flowerfat.apilibrary.R;
@@ -20,14 +24,18 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ */
 public class CategoryActivity extends AppCompatActivity {
     private final static String TAG = "CategoryActivity";
 
-    private RecyclerView mRecyclerView ;
-    private CookListAdapter myAdapter;
-
+    private Spinner mSpinner1, mSpinner2;
+    private RecyclerView mRecyclerView;
+    private CookListAdapter mAdapter;
 
     private List<CookDetail> cookList = new ArrayList<>();
+    private CookConstant mCookConstant = new CookConstant();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +43,40 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_category);
 
         findView();
+        initToolbar();
         initRecyclerView();
 
-        new MyTask().execute();
     }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar.setTitle("标题");
+        setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.action_search) {
+                    Toast.makeText(CategoryActivity.this, "action_search", Toast.LENGTH_LONG).show();
+                } else if (menuItem.getItemId() == R.id.action_filter) {
+                    Toast.makeText(CategoryActivity.this, "action_filter", Toast.LENGTH_LONG).show();
+                }
+
+                return true;
+            }
+        });
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_category, menu);
+        return true;
+    }
+
 
     private void findView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
+        mCookConstant.initData();
     }
 
     private void initRecyclerView() {
@@ -53,11 +87,11 @@ public class CategoryActivity extends AppCompatActivity {
         // 设置固定大小
         mRecyclerView.setHasFixedSize(true);
         // 初始化自定义的适配器
-        myAdapter = new CookListAdapter();
+        mAdapter = new CookListAdapter();
         // 为mRecyclerView设置适配器
-        mRecyclerView.setAdapter(myAdapter);
+        mRecyclerView.setAdapter(mAdapter);
 
-        myAdapter.setOnItemClickListener(new CookListAdapter.onItemClickListener() {
+        mAdapter.setOnItemClickListener(new CookListAdapter.onItemClickListener() {
             @Override
             public void onClick(View v, int position) {
                 Intent intent = new Intent(CategoryActivity.this, DetailsActivity.class);
@@ -68,7 +102,7 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     private void setRecyclerView(List<CookDetail> cooks) {
-        myAdapter.makeDatas(cooks);
+        mAdapter.makeDatas(cooks);
     }
 
     private class MyTask extends AsyncTask<String, Integer, String> {
@@ -94,7 +128,7 @@ public class CategoryActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
                 JSONObject jsonObject = new JSONObject(result);
-                if(jsonObject.getBoolean("success")){
+                if (jsonObject.getBoolean("success")) {
                     cookList = new Gson().fromJson(jsonObject.getString("yi18"), new TypeToken<List<CookDetail>>() {
                     }.getType());
                     if (cookList.size() > 0) {
@@ -107,13 +141,13 @@ public class CategoryActivity extends AppCompatActivity {
                 }
 
             } catch (Exception e) {
-                Log.e("菜谱名称获取","果然不行:"+e.getMessage());
+                Log.e("菜谱名称获取", "果然不行:" + e.getMessage());
             }
         }
 
         //onCancelled方法用于在取消执行中的任务时更改UI
         @Override
-        protected void onCancelled(){
+        protected void onCancelled() {
         }
     }
 

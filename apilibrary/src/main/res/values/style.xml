@@ -1,0 +1,15 @@
+<resources>
+    <style name="Theme.ApiLibrary" parent="Base.Theme.ApiLibrary"></style>
+
+    <style name="Base.Theme.ApiLibrary" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#333</item>
+        <item name="colorPrimaryDark">#000</item>
+        <item name="colorAccent">#FF4081</item>
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+
+    <style name="ThemeToolbar" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">#fff</item>
+    </style>
+
+</resources>
