@@ -1,5 +1,11 @@
 package com.flowerfat.apilibrary.main;
 
+import android.content.Context;
+
+import org.apache.http.util.EncodingUtils;
+
+import java.io.InputStream;
+
 /**
  * Created by 明明大美女 on 2015/10/14.
  */
@@ -93,5 +99,29 @@ public class Util {
             e.printStackTrace();
             return e.getMessage();
         }
+    }
+
+    /**
+     * 从assets 文件夹中读取文本数据
+     *
+     * @bigFlower: 此为字节流的方式，还有一种字符流的方式使用reader 网友说相比较而言字符流会占用内存，所以多数都使用字节流
+     */
+    public static String getTextFromAssets(final Context context,
+                                           String fileName) {
+        String result = "";
+        try {
+            InputStream in = context.getResources().getAssets().open(fileName);
+            // 获取文件的字节数
+            int lenght = in.available();
+            // 创建byte数组
+            byte[] buffer = new byte[lenght];
+            // 将文件中的数据读到byte数组中
+            in.read(buffer);
+            result = EncodingUtils.getString(buffer, "UTF-8");
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

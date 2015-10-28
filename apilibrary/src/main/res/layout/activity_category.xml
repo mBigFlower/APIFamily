@@ -14,6 +14,28 @@
         android:theme="@style/ThemeToolbar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+    <LinearLayout
+        android:id="@+id/categeryList_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/categeryList1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_weight="1"/>
+
+        <ListView
+            android:id="@+id/categeryList2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
     <!--这里来一个RecyclerView，显示列表的-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
