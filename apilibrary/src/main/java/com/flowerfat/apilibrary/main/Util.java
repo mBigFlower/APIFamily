@@ -1,6 +1,8 @@
 package com.flowerfat.apilibrary.main;
 
 import android.content.Context;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import org.apache.http.util.EncodingUtils;
 
@@ -123,5 +125,10 @@ public class Util {
             e.printStackTrace();
         }
         return result;
+    }
+
+    public static void closeSoftInput(Context context, View focusingView) {
+        InputMethodManager imm=(InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(focusingView.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
     }
 }
