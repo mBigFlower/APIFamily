@@ -11,6 +11,7 @@ public class CookDetail {
     private String tag;
     private String food;
     private String message;
+    private String content;
     private String count;
     private String fcount;
     private String rcount;
@@ -47,8 +48,13 @@ public class CookDetail {
         this.tag = tag;
     }
 
+    // I do something here, because of this little change, I can use one adapter for two api
     public String getFood() {
-        return food;
+        if(food != null)
+            return "食材："+food;
+        else {
+            return content ;
+        }
     }
 
     public void setFood(String food) {
@@ -62,9 +68,12 @@ public class CookDetail {
     public void setMessage(String message) {
         this.message = message;
     }
-
+    // I do something here, because of this little change, I can use one adapter for two api
     public String getCount() {
-        return count;
+        if(count != null)
+            return "浏览: " + count + "次";
+        else
+            return "";
     }
 
     public void setCount(String count) {

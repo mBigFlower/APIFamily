@@ -2,7 +2,6 @@ package com.flowerfat.apilibrary.healthCook;
 
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,14 +29,14 @@ public class CookListAdapter extends RecyclerView.Adapter<CookListAdapter.ViewHo
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public HtmlTextView titleTV;
-        public TextView foodTV, timesTV;
+        public HtmlTextView foodTV, titleTV;
+        public TextView timesTV;
         public SimpleDraweeView cookImg;
 
         public ViewHolder(View v) {
             super(v);
             titleTV = (HtmlTextView) v.findViewById(R.id.itemCook_title);
-            foodTV = (TextView) v.findViewById(R.id.itemCook_food);
+            foodTV = (HtmlTextView) v.findViewById(R.id.itemCook_food);
             timesTV = (TextView) v.findViewById(R.id.itemCook_times);
             cookImg = (SimpleDraweeView) v.findViewById(R.id.itemCook_img);
         }
@@ -62,12 +61,10 @@ public class CookListAdapter extends RecyclerView.Adapter<CookListAdapter.ViewHo
     @Override
     public void onBindViewHolder(CookListAdapter.ViewHolder holder, final int position) {
         holder.titleTV.setText(mDatas.get(position).getName());
-        holder.foodTV.setText("食材: " + mDatas.get(position).getFood());
-        holder.timesTV.setText("浏览: " + mDatas.get(position).getCount()+"次");
-        Log.i("imgUrl", ApiCook.getImgUrl(mDatas.get(position).getImg()));
+        holder.foodTV.setText(mDatas.get(position).getFood());
+        holder.timesTV.setText(mDatas.get(position).getCount());
         Uri uri = Uri.parse(ApiCook.getImgUrl(mDatas.get(position).getImg()));
         holder.cookImg.setImageURI(uri);
-
         holder.cookImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

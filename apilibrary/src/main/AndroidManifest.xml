@@ -34,22 +34,6 @@
             android:name=".healthCook.NameActivity"
             android:label="@string/title_activity_name" >
         </activity>
-        <activity
-            android:name=".healthCook.CategoryActivity"
-            android:label="@string/title_activity_category" >
-        </activity>
-        <activity
-            android:name=".healthCook.ListActivity"
-            android:label="@string/title_activity_list" >
-        </activity>
-        <activity
-            android:name=".peccancy.PeccancyActivity"
-            android:label="@string/title_activity_peccancy" >
-        </activity>
-        <activity
-            android:name=".identityCard.MainActivity"
-            android:label="@string/title_activity_main" >
-        </activity>
     </application>
 
 </manifest>
